@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/templete/newTemplate.xhtml">
+
+            <ui:define name="content">
+                
+                <h:form>
+                    
+                    <p:fieldset legend="Datos personales" style="margin-bottom:20px">
+                        <h:panelGrid columns="3" cellpadding="5">
+                            
+                            <p:outputLabel value="Nombre" />
+                            <p:inputText id="nombre" value="#{AltaUsuario.per.nombre}" 
+                                         required="true" requiredMessage="Nombre es un campo obligatorio"/>
+                            <p:message for="nombre" />
+                            
+                            <p:outputLabel value="Primer Apellido" />
+                            <p:inputText id="apellido1" value="#{AltaUsuario.per.apellido1}" required="true"/>
+                            <p:message for="apellido1" />
+                            
+                            <p:outputLabel value="Segundo Apellido" />
+                            <p:inputText id="apellido2" value="#{AltaUsuario.per.apellido2}" required="true"/>
+                            <p:message for="apellido2" />
+                            
+                            <p:outputLabel value="Sexo" />
+                            <p:selectOneButton id="sexo" value="#{AltaUsuario.per.sexo}">
+                                <f:selectItem itemLabel="Masculino" itemValue="M" />
+                                <f:selectItem itemLabel="Femenino" itemValue="F" />
+                            </p:selectOneButton>
+                            <p:message for="sexo" />
+                            
+                            <p:outputLabel value="Fecha de Nacimiento" />
+                            <p:calendar id="calendario" value="#{AltaUsuario.per.fechaNacimiento}" showOn="button" />
+                            <p:message for="calendario" />
+                            
+                        </h:panelGrid>
+                    </p:fieldset>
+                    
+                    <p:fieldset legend="Datos de acceso" style="margin-bottom:20px">
+                        <h:panelGrid columns="3" cellpadding="5">
+                            
+                            <p:outputLabel value="Rol" />
+                            <p:selectOneMenu id="rol" value="#{AltaUsuario.rol.idRol}">
+                                <f:selectItems value="#{AltaUsuario.listaDeRoles}"
+                                               var="e" itemLabel="#{e.tipoUsuario}" itemValue="#{e.idRol}"/>
+                            </p:selectOneMenu>
+                            <p:message for="rol" />
+                            
+                            <p:outputLabel value="Nombre de Usuario" />
+                            <p:inputText id="usuario" value="#{AltaUsuario.usu.user}" required="true"/>
+                            <p:message for="usuario" />
+                            
+                            <p:outputLabel value="Contraseña" />
+                            <p:inputText id="contra" value="#{AltaUsuario.usu.password}" required="true"/>
+                            <p:message for="contra" />
+                            
+                            <p:outputLabel value="Repita Contraseña" />
+                            <p:inputText id="contra2" required="true"/>
+                            <p:message for="contra2" />
+                                                        
+                        </h:panelGrid>
+                    </p:fieldset>
+                    
+                    <p:commandButton value="Registrar" actionListener="#{AltaUsuario.insertarUsuario()}" />
+                    
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
