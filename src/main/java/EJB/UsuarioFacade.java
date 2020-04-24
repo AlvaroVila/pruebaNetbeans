@@ -44,5 +44,16 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         return existe;
     }
     
-    
+    @Override
+    public List<Usuario> verificarUsuario (Usuario usu){
+        String consulta = "SELECT u FROM Usuario u WHERE u.user=:param1 and u.password=:param2";
+        Query query = em.createQuery(consulta);
+        
+        query.setParameter("param1", usu.getUser());
+        query.setParameter("param2", usu.getPassword());
+        
+        List<Usuario> resultado = query.getResultList();
+        return resultado;
+        
+    }
 }
