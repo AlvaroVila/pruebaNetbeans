@@ -5,9 +5,11 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Usuario;
 
 /**
@@ -28,5 +30,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
+    
+    public boolean comprobarDuplicado(Usuario usu){
+        List<Usuario> listaUsuarios = this.findAll();
+        boolean existe = false;
+        
+        for(Usuario u : listaUsuarios){
+            if(u.getUser().equals(usu.getUser())){
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
+    
     
 }

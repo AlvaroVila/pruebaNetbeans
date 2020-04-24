@@ -30,4 +30,8 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
+    boolean comprobarDuplicado(Usuario usu);
+    
+    List<Usuario> verificarUsuario(Usuario usu);
+    
 }

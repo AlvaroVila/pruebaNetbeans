@@ -17,28 +17,31 @@
                     <p:fieldset legend="Datos personales" style="margin-bottom:20px">
                         <h:panelGrid columns="3" cellpadding="5">
                             
-                            <p:outputLabel value="Nombre" />
+                            <p:outputLabel value="Nombre:" for="nombre"/>
                             <p:inputText id="nombre" value="#{AltaUsuario.per.nombre}" 
                                          required="true" requiredMessage="Nombre es un campo obligatorio"/>
                             <p:message for="nombre" />
                             
-                            <p:outputLabel value="Primer Apellido" />
-                            <p:inputText id="apellido1" value="#{AltaUsuario.per.apellido1}" required="true"/>
+                            <p:outputLabel value="Primer Apellido:" for="apellido1"/>
+                            <p:inputText id="apellido1" value="#{AltaUsuario.per.apellido1}" 
+                                         required="true" requiredMessage="Primer Apellido es un campo obligatorio"/>
                             <p:message for="apellido1" />
                             
-                            <p:outputLabel value="Segundo Apellido" />
-                            <p:inputText id="apellido2" value="#{AltaUsuario.per.apellido2}" required="true"/>
+                            <p:outputLabel value="Segundo Apellido:" for="apellido2"/>
+                            <p:inputText id="apellido2" value="#{AltaUsuario.per.apellido2}" 
+                                         required="true" requiredMessage="Segundo Apellido es un campo obligatorio"/>
                             <p:message for="apellido2" />
                             
-                            <p:outputLabel value="Sexo" />
+                            <p:outputLabel value="Sexo:" for="sexo"/>
                             <p:selectOneButton id="sexo" value="#{AltaUsuario.per.sexo}">
                                 <f:selectItem itemLabel="Masculino" itemValue="M" />
                                 <f:selectItem itemLabel="Femenino" itemValue="F" />
                             </p:selectOneButton>
                             <p:message for="sexo" />
                             
-                            <p:outputLabel value="Fecha de Nacimiento" />
-                            <p:calendar id="calendario" value="#{AltaUsuario.per.fechaNacimiento}" showOn="button" />
+                            <p:outputLabel value="Fecha de Nacimiento:" for="calendario"/>
+                            <p:calendar id="calendario" value="#{AltaUsuario.per.fechaNacimiento}" showOn="button" 
+                                        required="true" requiredMessage="Fecha de Nacimiento es un campo obligatorio"/>
                             <p:message for="calendario" />
                             
                         </h:panelGrid>
@@ -54,15 +57,15 @@
                             </p:selectOneMenu>
                             <p:message for="rol" />
                             
-                            <p:outputLabel value="Nombre de Usuario" />
+                            <p:outputLabel value="Nombre de Usuario" for="rol"/>
                             <p:inputText id="usuario" value="#{AltaUsuario.usu.user}" required="true"/>
                             <p:message for="usuario" />
                             
-                            <p:outputLabel value="Contraseña" />
+                            <p:outputLabel value="Contraseña" for="contra"/>
                             <p:inputText id="contra" value="#{AltaUsuario.usu.password}" required="true"/>
                             <p:message for="contra" />
                             
-                            <p:outputLabel value="Repita Contraseña" />
+                            <p:outputLabel value="Repita Contraseña" for="contra2"/>
                             <p:inputText id="contra2" required="true"/>
                             <p:message for="contra2" />
                                                         
