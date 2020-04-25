@@ -14,8 +14,12 @@
                 
                 <h:form>
                     
+                    <p:messages id="mensajes" showDetail="true" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
+                    
                     <p:fieldset legend="Datos personales" style="margin-bottom:20px">
-                        <h:panelGrid columns="3" cellpadding="5">
+                        <h:panelGrid id="grid1" columns="3" cellpadding="5">
                             
                             <p:outputLabel value="Nombre:" for="nombre"/>
                             <p:inputText id="nombre" value="#{AltaUsuario.per.nombre}" 
@@ -48,7 +52,7 @@
                     </p:fieldset>
                     
                     <p:fieldset legend="Datos de acceso" style="margin-bottom:20px">
-                        <h:panelGrid columns="3" cellpadding="5">
+                        <h:panelGrid id="grid2" columns="3" cellpadding="5">
                             
                             <p:outputLabel value="Rol" />
                             <p:selectOneMenu id="rol" value="#{AltaUsuario.rol.idRol}">
@@ -72,8 +76,8 @@
                         </h:panelGrid>
                     </p:fieldset>
                     
-                    <p:commandButton value="Registrar" actionListener="#{AltaUsuario.insertarUsuario()}" />
-                    <h:outputScript library="js" name="calendario.js" target="head" />
+                    <p:commandButton value="Registrar" actionListener="#{AltaUsuario.insertarUsuario()}" update="grid1,grid2" />
+                    <h:outputScript library="js" name="calendario.js" />
                 </h:form>
                 
             </ui:define>

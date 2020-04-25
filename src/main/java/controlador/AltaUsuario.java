@@ -12,7 +12,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.faces.view.facelets.FaceletContext;
 import javax.inject.Named;
 import modelo.Persona;
 import modelo.Rol;
@@ -26,10 +29,13 @@ import modelo.Usuario;
 @ViewScoped
 public class AltaUsuario implements Serializable{
     
+    //Atributos que necesitamos
     private Usuario usu;
     private Persona per;
     private Rol rol;
     private List<Rol> listaDeRoles;
+    
+    //Facades para atacar a base de datos
     @EJB
     private UsuarioFacadeLocal usuarioEJB;
     @EJB
@@ -42,6 +48,7 @@ public class AltaUsuario implements Serializable{
         rol = new Rol();
         try{
             listaDeRoles = rolEJB.findAll();
+            //Añadimos un "Selecciona Rol" en la primera posicion
             Rol r = new Rol();
             r.setTipoUsuario("Seleccione Rol");
             listaDeRoles.add(0, r);
@@ -50,11 +57,16 @@ public class AltaUsuario implements Serializable{
         }
     }
     
+    /**
+     * Funcion para probar consulta JPQL de la Facade + Mensaje a vista
+     */
     private void valida(){
         List<Usuario> valido = usuarioEJB.verificarUsuario(usu);
         for (Usuario u : valido){
             System.out.println(u.toString());
         }
+        FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Se registro el usuario: " + usu.getUser()));
     }
 
     public void insertarUsuario(){
@@ -93,7 +105,7 @@ public class AltaUsuario implements Serializable{
         } catch (Exception e){
             System.err.println("Error al insertar nuevo usuario: " + e.getMessage());
         }
-        valida();
+        valida(); //otra manera a comprobarDuplicado(u)
     }
     
     public Usuario getUsu() {
