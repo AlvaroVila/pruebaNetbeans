@@ -7,8 +7,10 @@ package controlador;
 
 import EJB.UsuarioFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Usuario;
@@ -40,7 +42,9 @@ public class LoginController implements Serializable{
         System.out.println("Entro en funcion verificarUsuario()");
         System.out.println("Usuario: " + usu.getUser() + " , Pass: " + usu.getPassword());
         
-        if(usuarioEJB.verificarUsuario(usu) != null){
+        List<Usuario> usuarios = usuarioEJB.verificarUsuario(usu);
+        if( usuarios != null){
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioActual", usu);
             return "private/principal.xhtml?faces-redirect=true";
         }
         return "permisosinsuficientes.xhtml?faces-redirect=true";
