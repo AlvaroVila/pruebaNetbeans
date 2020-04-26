@@ -53,6 +53,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         query.setParameter("param2", usu.getPassword());
         
         List<Usuario> resultado = query.getResultList();
+        if (resultado.isEmpty()) { 
+            return null;
+        }
+        System.out.println(resultado.toString());
         return resultado;
         
     }

@@ -23,7 +23,9 @@
                             
                             <p:outputLabel value="Nombre:" for="nombre"/>
                             <p:inputText id="nombre" value="#{AltaUsuario.per.nombre}" 
-                                         required="true" requiredMessage="Nombre es un campo obligatorio"/>
+                                         required="true" requiredMessage="Nombre es un campo obligatorio">
+                                <f:validateRegex pattern="[A-Za-z]+" />
+                            </p:inputText>
                             <p:message for="nombre" />
                             
                             <p:outputLabel value="Primer Apellido:" for="apellido1"/>
